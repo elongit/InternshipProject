@@ -1,0 +1,34 @@
+@startuml File_Management
+
+rectangle "File Management System" {
+    ' Creating actors
+    actor LoggedOutEmployee
+    actor LoggedInEmployee
+    actor Admin
+
+    ' Adding extensions
+    LoggedOutEmployee <|-- LoggedInEmployee
+    LoggedInEmployee <|-- Admin 
+
+    ' Use cases for LoggedOutEmployee
+    LoggedOutEmployee --right-> (Login)
+    (Login) <.(Register) : includes
+
+    ' Use cases for LoggedInEmployee
+    LoggedInEmployee --right-> (Log Out)
+    LoggedInEmployee --right-> (Extract File)
+
+    ' Use cases for Admin
+    Admin --down-> (Add Division)
+    Admin --right-> (Add Treasury)
+    (Add Treasury) <.(Add shelf) : includes
+    (Add shelf) <.(Add box) : includes
+
+
+    ' Admin --right-> (Add Shelf)
+    ' Admin --right-> (Add Box)
+    ' Admin --right-> (Add File)
+    Admin --down-> (Track User Operations)
+}
+
+@enduml

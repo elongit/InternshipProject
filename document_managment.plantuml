@@ -1,0 +1,104 @@
+
+@startuml Document Management System
+' skinparam linetype ortho
+entity user {
+    *id : number <<PK>>
+    --
+    name : string
+    email : string <<unique>>
+    password : string
+}
+
+entity role {
+    *id : number <<PK>>
+    --
+    name : string
+}
+
+entity user_role {
+    *id : number <<PK>>
+    --
+    user_id : number <<FK>> (user.id)
+    role_id : number <<FK>> (role.id)
+}
+
+entity division {
+    *id : number <<PK>>
+    --
+    name : string
+}
+
+entity document {
+    *id : number <<PK>>
+    --
+    title : string
+    type : string
+    created_at : date
+}
+
+entity file {
+    *id : number <<PK>>
+    --
+    file_name : text
+    original_name : text
+    file_path : text
+    document_id : <<FK>> (document.id)
+}
+
+
+
+
+
+entity user_document_action {
+    *id : number <<PK>>
+    --
+    user_id : number <<FK>> (user.id)
+    document_id : number <<FK>> (document.id)
+    action_type : enum(VIEW, DOWNLOAD, PRINT)
+    timestamp : datetime
+}
+
+entity treasuries {
+    *id : number <<PK>>
+    --
+    name : string
+    location : string
+}
+
+entity shelves {
+    *id : number <<PK>>
+    --
+    name : string
+    treasury_id : number <<FK>> (treasuries.id)
+}
+
+entity boxes {
+    *id : number <<PK>>
+    --
+    name : string
+    shelf_id : number <<FK>> (shelves.id)
+}
+
+user ||--|{ user_role : includes
+role ||--|{ user_role : has
+
+division ||--|{ user : has
+division ||--|{ document : manages
+
+treasuries ||--o{ shelves : contains
+shelves ||--o{ boxes : holds
+
+treasuries ||--o{ document : stores
+shelves ||--o{ document : organizes
+boxes ||--o{ document : keeps
+
+
+division ||--|{ user_document_action : has
+user ||--|{ user_document_action : performs
+document ||--|{ user_document_action : tracked_in
+
+document ||--|{ file : hasMany
+
+
+@enduml
+
