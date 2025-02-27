@@ -41,6 +41,7 @@ class DocumentForm extends Component
     #[Validate('required|exists:boxes,id')]
     public $box_id;
 
+
     public function render()
     {
         $Boxes = Box::all();
@@ -55,19 +56,19 @@ class DocumentForm extends Component
         $this->validate();
     
         $choosedTreasury = Treasury::find($this->treasury_id);
-    
         // Check if the selected box belongs to the given treasury.
         $shelf = $choosedTreasury->shelves()->find($this->box_id);
         if (!$shelf) {
-            return redirect()->back()->withErrors(['treasury_id' => 'علبة المحددة لا ينتمي إلى الخزانة المحددة.']);
+            //return redirect()->back()->withErrors(['treasury_id' => 'علبة المحددة لا ينتمي إلى الخزانة المحددة.']);
+            //for livewire
+            $this->addError('treasury_id', 'علبة المحددة لا ينتمي إلى الخزانة المحددة.');
+            return;
         }
     
-        // Get current year and document code for building full document number.
         $currentYear = Carbon::now()->format('Y');
         $docCode = $this->document_code;
     
         DB::transaction(function () use ($currentYear, $docCode) {
-            // Create the document first.
             $document = Document::create([
                 'document_title' => $this->document_title,
                 'date_archived'  => $this->date_archived,
@@ -78,11 +79,9 @@ class DocumentForm extends Component
                 'box_id'         => $this->box_id,
             ]);
     
-            // Build full document number using the actual document id.
             $fullDocumentNumber = "{$document->id}/{$docCode}/{$currentYear}";
             $document->update(['full_number' => $fullDocumentNumber]);
     
-            // Now handle the file upload with the actual document id.
             $this->handleUploadedFile($this, 'uploaded_document', new File(), $document->id);
         });
     

@@ -3,11 +3,11 @@
     البوابة
     </x-slot>
     <section>
-        <figure>
-            <img src="{{ asset('images/headerar.png') }}" alt="">
+        <figure class="h-44 ">
+            <img src="https://orientation-chabab.com/images/Ministere-de-la-Justice.png" class="w-full h-full object-cover" alt="">
         </figure>
-        <p class="p-5 font-bold text-gray-600 text-center text-xl my-5">
-        البوابة ارشفة و ادارة ملفات قضائية
+        <p class="p-5 font-bold text-gray-600 text-center text-xl mt-10 mb-5">
+            التطبيقية الخاصة بالارشيف الكتروني
         </p>
     </section>
 
@@ -32,8 +32,7 @@
    
     <footer class="bg-slate-200  p-3 font-semibold text-center w-full fixed -left-24 bottom-0">
         
-
-         البوابة ارشفة و ادارة ملفات قضائية Copyright © 2025 
+    التطبيقية الخاصة بالارشيف الكتروني Copyright © 2025 
 
 
     </footer>

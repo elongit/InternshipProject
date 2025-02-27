@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Livewire;
-
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
@@ -21,7 +20,7 @@ class Division extends Component
     public function store(){
         $this->validate();
         
-        Division::create([
+       \App\Models\Division::create([
             'division_name' => $this->division_name,
             'division_location' => $this->division_location,
         ]);

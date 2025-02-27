@@ -1,22 +1,22 @@
 <fieldset class='w-full md:w-2/3  m-auto my-10   shadow-md rounded'>
-        <legend class='text-xl font-semibold p-2 ' >إضافة رف</legend>
+        <legend class='text-xl font-semibold p-2 text-blue-600' >إضافة رف</legend>
         <form class='flex flex-col p-5 gap-5  ' wire:submit='store'>
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='shelf_name'>اسم الرف</x-form-label>
-                <x-form-input wire:model='shelf_name' type="text" name='shelf_name' id='shelf_name' placeholder='اسم الرف' />
+                <x-form-input wire:model='shelf_name' type="text" name='shelf_name' id='shelf_name' placeholder='اسم الرف' required />
                 <x-form-error name='shelf_name' />
             </div>
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='shelf_number'>رقم الرف</x-form-label>
-                <x-form-input wire:model='shelf_number'  type="number" name='shelf_number' id='shelf_number' min='1' />
+                <x-form-input wire:model='shelf_number'  type="number" name='shelf_number' id='shelf_number' min='1' required />
                 <x-form-error name='shelf_number' />
             </div>
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='shelf_location'>موقع الرف</x-form-label>
-                <textarea wire:model='shelf_location'  name='shelf_location' id='shelf_location' class='bg-slate-200 p-3'></textarea>
+                <textarea wire:model='shelf_location'  name='shelf_location' id='shelf_location' class='bg-slate-200 p-3' required></textarea>
                 <x-form-error name='shelf_location' />
             </div>
 

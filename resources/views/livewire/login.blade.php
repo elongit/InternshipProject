@@ -1,6 +1,6 @@
 
     <fieldset class='w-full md:w-2/3 m-auto my-10 shadow-md rounded'>
-        <legend class='text-xl font-bold'>تسجيل الدخول</legend>
+        <legend class='text-blue-600 text-xl font-bold'>تسجيل الدخول</legend>
         <form class='flex flex-col p-5 gap-5' wire:submit='store'>
             <x-form-error name='Invalidcredentials' />
             

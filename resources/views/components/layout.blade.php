@@ -7,13 +7,14 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         @vite('resources/css/app.css')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     </head>
     <body class="relative bg-slate-50 p-0 m-0 box-border " dir="rtl">
 
         <!-- Sidebar/Navbar -->
         <header class="flex flex-col gap-5 bg-slate-200 w-60 p-5 h-full fixed top-0 right-0 z-50">
             <h1 class="text-2xl text-black text-right">
-                <x-nav-link name="{{ route('/') }}" class="">إدارة الملفات</x-nav-link>
+                <x-nav-link name="{{ route('/') }}" class=""> التطبيقية</x-nav-link>
             </h1>
             <nav class="font-semibold mt-4">
                 <ul class="flex flex-col gap-4 text-right">

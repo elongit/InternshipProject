@@ -4,7 +4,7 @@
     </x-slot>
 
     <fieldset class='text-left rtl:text-right w-2/3 m-auto my-10 p-2 shadow-md rounded' dir="rtl">
-        <legend class='text-gray-600 text-2xl font-semibold'>طلب استخراج الملف من المحاضر</legend>
+        <legend class='text-blue-600 text-2xl font-semibold'>طلب استخراج الملف من المحاضر</legend>
         <form action="{{ route('request.store') }}" method="post" class='flex flex-col p-5 gap-5'>
             @csrf
             <div class='grid grid-cols-2 gap-2'>
@@ -34,7 +34,7 @@
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='operation_topic'>لأي غرض تحتاج هذا الملف؟</x-form-label>
-                <textarea name='operation_topic' id='operation_topic' class='bg-slate-200 p-3' required></textarea>
+                <textarea name='operation_topic' id='operation_topic' class='bg-slate-200 p-3' required>دمج</textarea>
                 <x-form-error name='operation_topic' />
             </div>
 
@@ -45,12 +45,7 @@
                 <x-form-error name='request_reference' />
             </div>
 
-            <div class="grid grid-cols-2 gap-5">
-                <div class='flex flex-col gap-2'>
-                    <x-form-label name='delivery_date'>تاريخ التسليم</x-form-label>
-                    <x-form-input type="date" name='delivery_date' id='delivery_date' required />
-                    <x-form-error name='delivery_date' />
-                </div>
+            <div >
 
                 <div class='flex flex-col gap-2'>
                     <x-form-label name='return_date'> ﺗﺎرﻳﺦ ارﺟﺎع اﻟﻤﻠﻒ </x-form-label>

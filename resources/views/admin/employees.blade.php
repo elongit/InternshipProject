@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="relative overflow-x-auto mt-5 shadow-md sm:rounded-lg">
-        <table class="cursor-pointer min-w-full text-sm text-right bg-white shadow rounded-lg rtl:text-right">
+        <table class="cursor-pointer w-full text-sm text-right bg-white shadow rounded-lg rtl:text-right">
             <thead class="text-xs uppercase bg-slate-800 text-white sticky top-0">
                 <tr>
                     <th scope="col" class="px-4 py-3 text-center">
@@ -30,6 +30,10 @@
                     </th>
 
                     <th scope="col" class="px-4 py-3 text-center">
+                    وقت العملية 
+                     </th>
+
+                    <th scope="col" class="px-4 py-3 text-center">
                         السنة
                     </th>
 
@@ -43,7 +47,7 @@
             </thead>
             <tbody>
                 @foreach($documentInfo as $document)
-                    <tr class="text-black font-semibold hover:bg-slate-100 border-b-2 border-gray-200">
+                    <tr class=" font-semibold text-gray-950 hover:bg-slate-100 border-b-2 border-gray-200">
                         <td class="px-1 py-3 text-center">
                             {{$document->user->id}}
                         </td>
@@ -65,20 +69,26 @@
                         </td>
                      
                         <td class="px-1 py-3 text-center">
-                            {{ucfirst($document->operation_type) == 'Print' ? 'تحميل' : 'طباعة'}}
+                         {{ ucfirst($document->operation_type) == 'Print' ? 'طباعة' : 'تحميل' }}
+                        </td>
+                        
+                        <td class="px-1 py-3 text-center">
+                        {{\Carbon\Carbon::parse($document->created_at)->format('H:i:s')}}
                         </td>
 
+                        
                         <td class="px-1 py-3 text-center">
                             {{\Carbon\Carbon::parse($document->created_at)->format('Y')}}
                         </td>
                        
 
                         <td class="px-1 py-3 text-center">
-                            {{$document->delivery_date}}
+                            {{\Carbon\Carbon::parse($document->created_at)->format('Y-m-d')}}
                         </td>
                         <td class="px-1 py-3 text-center">
                             {{$document->return_date}}
                         </td>
+          
                     </tr>
                 @endforeach
             </tbody>

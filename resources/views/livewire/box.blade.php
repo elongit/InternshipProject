@@ -1,5 +1,5 @@
 <fieldset class='w-full md:w-2/3 m-auto my-10 shadow-md rounded'>
-        <legend class='text-xl font-semibold p-2'>إضافة  علبة</legend>
+        <legend class='text-blue-600 text-xl font-semibold p-2'>إضافة  علبة</legend>
         <form  class='flex flex-col p-5 gap-5' wire:submit='store'>
 
             <div class='flex flex-col gap-2'>

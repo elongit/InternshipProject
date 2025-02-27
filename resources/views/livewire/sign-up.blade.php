@@ -1,7 +1,7 @@
 
 
 <fieldset class='w-full md:w-2/3 m-auto my-10 p-2 shadow-md rounded'>
-        <legend class='text-gray-600 text-2xl font-semibold'>التسجيل</legend>
+        <legend class='text-blue-600 text-2xl font-semibold'>التسجيل</legend>
         <form   class='flex flex-col p-5 gap-5' wire:submit='store'>
             <div class='grid grid-cols-2 gap-2'>
                 <div class='flex flex-col gap-2'>

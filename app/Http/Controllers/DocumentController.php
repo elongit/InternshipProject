@@ -19,7 +19,7 @@ class DocumentController extends Controller
         $Treasuries = Treasury::all();
         $Boxes = Box::all();
         $Divisions = Division::all();
-        return view('admin.document', compact('Treasuries',  'Boxes', 'Divisions'));
+        return view('admin.addDocument', compact('Treasuries',  'Boxes', 'Divisions'));
     }
 
 

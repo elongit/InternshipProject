@@ -47,7 +47,6 @@ class UserRequest extends Controller
             'operation_topic' => $request->operation_topic,
             'operation_type'  => $request->operation_type,
             'return_date'     => $request->return_date,
-            'delivery_date'   => $request->delivery_date,
         ]);
 
         if ($request->operation_type == 'download') {
@@ -68,7 +67,6 @@ class UserRequest extends Controller
                     'division' => Division::where('id', $request->division_id)->value('division_name'),
                     'topic' => $request->operation_topic,
                     'reference' =>  $request->request_reference,
-                    'delivery_time' => $request->return_date,
                     'return_time' => $request->delivery_date,
                 ]
             ];

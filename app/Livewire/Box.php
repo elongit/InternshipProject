@@ -26,7 +26,7 @@ class Box extends Component
     {
         $this->validate();
         
-        Box::create([
+        \App\Models\Box::create([
             'box_name' => $this->box_label,
             'box_number' => $this->box_number,
             'shelf_id' => $this->shelf_id
