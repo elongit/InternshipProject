@@ -30,7 +30,6 @@ class UserRequest extends Controller
             'division_id'       => 'required|exists:divisions,id',
             'operation_type'    => 'required|in:download,print',
             'return_date'       => 'nullable|date',
-            'delivery_date'     => 'required|date',
         ]);
 
         $document_reference = Document::where('full_number', $request->request_reference)->first();
@@ -67,7 +66,8 @@ class UserRequest extends Controller
                     'division' => Division::where('id', $request->division_id)->value('division_name'),
                     'topic' => $request->operation_topic,
                     'reference' =>  $request->request_reference,
-                    'return_time' => $request->delivery_date,
+                    'delivery_time' => $requestDocument->created_at,
+                    'return_time' => $request->return_date,
                 ]
             ];
 
@@ -100,8 +100,7 @@ class UserRequest extends Controller
             // Output the PDF
             $mpdf->Output('document.pdf', 'I');
         }
-    
-    
-        return redirect('/')->with('success', 'تم تسجيل الإجراء بنجاح.');
+
+        return redirect()->back()->with('success', 'تم تسجيل الإجراء بنجاح.');
     }
 }

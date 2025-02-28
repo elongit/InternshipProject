@@ -1,6 +1,6 @@
 <section>
     <form method="get" wire:submit='store'>
-        <input wire:model='search' name="search" type="search" class="p-3 bg-slate-200 w-1/2 outline-none ring-2 ring-transparent focus:ring-blue-500 focus:ring-2 focus:ring-offset-2 rounded-md transition-all duration-300 hover:ring-gray-300" id="" placeholder="الرقم الملف الكامل">
+        <input wire:model='search' id="search"  name="search" type="search" class="p-3 bg-slate-200 w-1/2 outline-none ring-2 ring-transparent focus:ring-blue-500 focus:ring-2 focus:ring-offset-2 rounded-md transition-all duration-300 hover:ring-gray-300" placeholder="الرقم الملف الكامل" >
     </form>
     <div class="relative  overflow-x-auto mt-5 bg-white shadow  rounded-lg">
 
@@ -37,3 +37,4 @@
         </table>
     </div>
 </section>
+

@@ -22,7 +22,8 @@
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='division_id'>القسم الخاص بك</x-form-label>
-                <select name="division_id" id="division_id" class='bg-slate-200 p-3' required>
+                <select name="division_id" id="division_id" class='bg-slate-200 p-3' 
+                >
                     @foreach($divisions as $division)
                         <option value="{{ $division->id }}">
                             {{ $division->division_name }}
@@ -34,14 +35,16 @@
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='operation_topic'>لأي غرض تحتاج هذا الملف؟</x-form-label>
-                <textarea name='operation_topic' id='operation_topic' class='bg-slate-200 p-3' required>دمج</textarea>
+                <textarea name='operation_topic' id='operation_topic' class='bg-slate-200 p-3' 
+                >دمج</textarea>
                 <x-form-error name='operation_topic' />
             </div>
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='request_reference'>مرجع الطلب</x-form-label>
                 <x-form-input type="text" name='request_reference' id='request_reference' 
-                              placeholder='مرجع الطلب'  required />
+                              placeholder='مرجع الطلب'  
+                               />
                 <x-form-error name='request_reference' />
             </div>
 
@@ -56,7 +59,8 @@
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='operation_type'>اختر نوع العملية</x-form-label>
-                <select name="operation_type" id="operation_type" required class='bg-slate-200 p-3'>
+                <select name="operation_type" id="operation_type" 
+                 class='bg-slate-200 p-3'>
                     <option value="download" >تنزيل</option>
                     <option value="print" >طباعة</option>
                 </select>

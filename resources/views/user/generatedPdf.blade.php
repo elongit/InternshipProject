@@ -18,6 +18,7 @@
             text-align: right;
             margin: 0;
             padding: 0;
+            height: fit-content;
         }
 
         header, footer {
@@ -90,7 +91,7 @@
             <tr style=" border: none;">
                 <td style="width: 33%; padding: 0 10px;  border: none;">
                     <p>
-                        المملكه المغربيه رئاسة النيابة العامة محكمة الاستئناف بكلميم النيابة العامة
+                        المملكه المغربيه وزارة العدل <br> محكمة الاستئناف بكلميم
                     </p>
                 </td>
                 <td style="width: 33%; padding: 0 10px;  border: none;">
@@ -128,8 +129,8 @@
                 <td>{{ $item['division'] }}</td>
                 <td>{{ $item['topic'] }}</td>
                 <td>{{ $item['reference'] }}</td>
+                <td>{{ $item['delivery_time']->format('Y-d-m') }}</td>
                 <td>{{ $item['return_time'] }}</td>
-                <td>{{ $item['delivery_time'] }}</td>
             </tr>
             @endforeach
         </table>
@@ -157,7 +158,7 @@
     <!-- Footer Section -->
     <footer>
         <p>
-            حرر بكلميم بتاريخ : {{ $data[0]['delivery_time'] }}
+            حرر بكلميم بتاريخ : {{ $data[0]['delivery_time']->format('Y-d-m') }}
         </p>
         <h5>التوقيع</h5>
     </footer>
