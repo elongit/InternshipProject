@@ -7,18 +7,19 @@
         <legend class='text-blue-600 text-2xl font-semibold'>طلب استخراج الملف من المحاضر</legend>
         <form action="{{ route('request.store') }}" method="post" class='flex flex-col p-5 gap-5'>
             @csrf
-            <div class='grid grid-cols-2 gap-2'>
+      
                 <div class='flex flex-col gap-2'>
-                    <x-form-label name='id'>رقم المستخدم</x-form-label>
+                    <x-form-label name='id'>رقم الترتيبي</x-form-label>
                     <x-form-input type="text" name='id' id='id' value="{{ $user_id }}" readonly />
                     <x-form-error name='id' />
                 </div>
-                <div class='flex flex-col gap-2'>
-                    <x-form-label name='last_name'>الاسم الكامل</x-form-label>
-                    <x-form-input type="text" name='last_name' id='last_name' value="{{ $user_name }}" readonly />
-                    <x-form-error name='last_name' />
+              
+
+            <div class='flex flex-col gap-2'>
+                    <x-form-label name='full_name'>الاسم الكامل</x-form-label>
+                    <x-form-input type="text"  required name='full_name' id='full_name' value="{{ old('full_name') }}"  />
+                    <x-form-error name='full_name' />
                 </div>
-            </div>
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='division_id'>القسم الخاص بك</x-form-label>
@@ -35,7 +36,7 @@
 
             <div class='flex flex-col gap-2'>
                 <x-form-label name='operation_topic'>لأي غرض تحتاج هذا الملف؟</x-form-label>
-                <textarea name='operation_topic' id='operation_topic' class='bg-slate-200 p-3' 
+                <textarea name='operation_topic' id='operation_topic' class='bg-slate-200 p-3'  required
                 >دمج</textarea>
                 <x-form-error name='operation_topic' />
             </div>
@@ -44,6 +45,8 @@
                 <x-form-label name='request_reference'>مرجع الطلب</x-form-label>
                 <x-form-input type="text" name='request_reference' id='request_reference' 
                               placeholder='مرجع الطلب'  
+                              value='3/2646/2025'
+                              required
                                />
                 <x-form-error name='request_reference' />
             </div>
@@ -52,7 +55,7 @@
 
                 <div class='flex flex-col gap-2'>
                     <x-form-label name='return_date'> ﺗﺎرﻳﺦ ارﺟﺎع اﻟﻤﻠﻒ </x-form-label>
-                    <x-form-input type="date" name='return_date' id='return_date'   />
+                    <x-form-input type="date" name='return_date' id='return_date' value='{{ old("return_date") }}'   required/>
                     <x-form-error name='return_date' />
                 </div>
             </div>

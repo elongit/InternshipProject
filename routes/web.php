@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AddUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\RegisterUserController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Controllers\TreasuryController;
 use App\Http\Controllers\ShelfController;
@@ -10,8 +10,9 @@ use App\Http\Controllers\BoxController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\TrackedEmployeesController;
 use App\Http\Controllers\UserRequest;
+use App\Http\Controllers\UsersList;
 
 //-------------------------------------
 
@@ -20,11 +21,10 @@ Route::get('/', function () {
 })->name('/');
 //-------------------------------------
 
-Route::middleware('AdminAuth')->group( function(){
+Route::middleware(['auth' , 'AdminAuth'])->group( function(){
 
-    Route::get('/documents', [DashboardController::class , 'index'])->name('documents');
 
-    Route::controller(EmployeesController::class)->group(function(){
+    Route::controller(TrackedEmployeesController::class)->group(function(){
         Route::get('/employees' , 'create')->name('employees');
     });
 
@@ -42,7 +42,7 @@ Route::middleware('AdminAuth')->group( function(){
 
 
     Route::controller(DocumentController::class)->group(function(){
-        Route::get('/document' , 'create')->name('document');
+        Route::get('/AddDocument' , 'create')->name('AddDocument');
     });
     
     
@@ -51,8 +51,26 @@ Route::middleware('AdminAuth')->group( function(){
     
     });
 
+    Route::controller(AddUser::class)->group(function(){
+        Route::get('/addUser' , 'create')->name('addUser');
+        Route::post('/addUser' , 'store')->name('addUser.store');
+
+    
+    });
+
+    Route::controller(UsersList::class)->group(function(){
+        Route::get('/users' , 'create')->name('users');
+        Route::get('/users/{user}' , 'edit')->name('user.edit');
+        Route::put('/users/{user}' , 'update')->name('user.update');
+        Route::delete('/users/{user}' , 'destroy')->name('user.delete');
+    
+    });
+
 
 });
+
+Route::get('/documents', [DashboardController::class , 'index'])->name('documents')->middleware('auth');
+
 
 Route::get('/user', function () {
     return view('user.userAdmin');
@@ -73,11 +91,6 @@ Route::controller(SessionController::class)->group(function(){
 
 });
 
-Route::controller(RegisterUserController::class)->group(function(){
-    Route::get('/register' , 'create')->name('register');
-    // Route::post('/register' , 'store')->name('register.store');
-
-});
 
 
 

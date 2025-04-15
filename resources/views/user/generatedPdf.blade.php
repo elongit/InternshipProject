@@ -65,6 +65,7 @@
 
         th {
             background-color: #f2f2f2;
+
         }
 
         caption {
@@ -145,15 +146,20 @@
                 <th>الرف</th>
                 <th>العلبة</th>
             </tr>
-            @foreach($data as $item)
             <tr>
                 <td>{{$treasury}}</td>
                 <td>{{$shelf}}</td>
                 <td>{{$box}}</td>
             </tr>
-            @endforeach
         </table>
+      
     </div>
+    <div>
+        <h5>  اسم الموظف الدي سلم الملف</h5>
+         <span>
+         {{ $item['delivered_employee'] }}
+         </span>
+        </div>
 
     <!-- Footer Section -->
     <footer>

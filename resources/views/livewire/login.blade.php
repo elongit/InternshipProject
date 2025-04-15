@@ -21,9 +21,6 @@
             <x-form-button>
                 تسجيل الدخول
             </x-form-button>
-            
-            <small>
-                ليس لديك حساب بعد؟ <x-nav-link name="{{ route('register') }}">اشترك الآن</x-nav-link>
-            </small>
+
         </form>
     </fieldset>

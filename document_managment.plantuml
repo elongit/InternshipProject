@@ -22,12 +22,6 @@ entity user_role {
     role_id : number <<FK>> (role.id)
 }
 
-entity division {
-    *id : number <<PK>>
-    --
-    name : string
-}
-
 entity document {
     *id : number <<PK>>
     --
@@ -43,19 +37,6 @@ entity file {
     original_name : text
     file_path : text
     document_id : <<FK>> (document.id)
-}
-
-
-
-
-
-entity user_document_action {
-    *id : number <<PK>>
-    --
-    user_id : number <<FK>> (user.id)
-    document_id : number <<FK>> (document.id)
-    action_type : enum(VIEW, DOWNLOAD, PRINT)
-    timestamp : datetime
 }
 
 entity treasuries {
@@ -79,26 +60,27 @@ entity boxes {
     shelf_id : number <<FK>> (shelves.id)
 }
 
+entity user_document_action {
+    *id : number <<PK>>
+    --
+    user_id : number <<FK>> (user.id)
+    document_id : number <<FK>> (document.id)
+    action_type : enum(VIEW, DOWNLOAD, PRINT)
+    timestamp : datetime
+}
+
 user ||--|{ user_role : includes
 role ||--|{ user_role : has
 
-division ||--|{ user : has
-division ||--|{ document : manages
-
 treasuries ||--o{ shelves : contains
 shelves ||--o{ boxes : holds
-
 treasuries ||--o{ document : stores
 shelves ||--o{ document : organizes
 boxes ||--o{ document : keeps
 
-
-division ||--|{ user_document_action : has
 user ||--|{ user_document_action : performs
 document ||--|{ user_document_action : tracked_in
-
 document ||--|{ file : hasMany
-
 
 @enduml
 

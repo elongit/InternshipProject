@@ -14,7 +14,7 @@
         <!-- Sidebar/Navbar -->
         <header class="flex flex-col gap-5 bg-slate-200 w-60 p-5 h-full fixed top-0 right-0 z-50">
             <h1 class="text-2xl text-black text-right">
-                <x-nav-link name="{{ route('/') }}" class=""> التطبيقية</x-nav-link>
+                <x-nav-link name="{{ route('/') }}" class="" :active="request()->is('/')"> التطبيقية</x-nav-link>
             </h1>
             <nav class="font-semibold mt-4">
                 <ul class="flex flex-col gap-4 text-right">
@@ -27,11 +27,7 @@
                     @endguest
 
                     @AdminAuth
-                    <li>
-                        <x-nav-link name="{{ route('documents') }}" :active="request()->is('documents')">
-                            الوثائق
-                        </x-nav-link>
-                    </li>
+                 
                     <li>
                         <x-nav-link name="{{ route('division') }}" :active="request()->is('division')">
                             إضافة قسم
@@ -57,14 +53,21 @@
                     </li>
 
                     <li>
-                        <x-nav-link name="{{ route('document') }}" :active="request()->is('document')">
+                        <x-nav-link name="{{ route('AddDocument') }}" :active="request()->is('AddDocument')">
                             إضافة ملف
                         </x-nav-link>
                     </li>
 
+
                     <li>
-                        <x-nav-link name="{{ route('employees') }}" :active="request()->is('employees')">
-                            الموظفون
+                        <x-nav-link name="{{ route('users') }}" :active="request()->is('users')">
+                        قائمة المستخدمين 
+                      </x-nav-link>
+                    </li>
+
+                    <li>
+                        <x-nav-link name="{{ route('employees') }}" :active="request()->is('employees')" class="text-sm">
+                        سجل الأنشطة الوثائقية للموظفين  
                         </x-nav-link>
                     </li>
 
@@ -73,6 +76,12 @@
 
                     @auth
                     <li>
+                        <x-nav-link name="{{ route('documents') }}" :active="request()->is('documents')">
+                            الوثائق
+                        </x-nav-link>
+                    </li> 
+                    
+                    <li>
                         <x-nav-link name="{{ route('request') }}" :active="request()->is('request')">
                             استخراج الملف
                         </x-nav-link>
@@ -80,8 +89,8 @@
 
                     <form action="/logout" method="post" id="delete-form">
                         @csrf
-                        <button type="submit" form="delete-form">
-                            <li>تسجيل الخروج</li>
+                        <button type="submit" form="delete-form" class="bg-red-500 rounded p-2 hover:scale-95 transition-all ">
+                            <li class="text-white">تسجيل الخروج</li>
                         </button>
                     </form>
                     @endauth
@@ -91,15 +100,14 @@
 
         <!-- Main Content Area -->
         <div class="mr-60 p-5">
-            @if(session('success'))
-            <div class="bg-green-400 text-white font-semibold py-3 px-2 text-center rounded-md w-1/2 mx-auto mb-4">
-                {{ session("success") }}
-            </div>
+                @if(session('success'))
+            <div class="bg-green-300 text-white  gap-3 items-center font-semibold py-3 px-5 text-center rounded  w-1/2 mx-auto mb-4">
+                    <span>{{ session("success") }}</span>
+                    <button class="text-white text-xl float-left mb-1" onclick="this.parentElement.style.display='none'"> &times; </button>
+                </div>
             @endif
 
-        
-
-            <main class="p-5">
+            <main class="p-2  ">
                 {{ $slot }}
             </main>
         </div>

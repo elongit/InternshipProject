@@ -1,3 +1,10 @@
+<section>
+@if(session('success_box'))
+            <div class="bg-green-300 text-white  gap-3 items-center font-semibold py-3 px-5 text-center rounded  w-1/2 mx-auto mb-4">
+                    <span>{{ session("success_box") }}</span>
+                    <button class="text-white text-xl float-left mb-1" onclick="this.parentElement.style.display='none'"> &times; </button>
+                </div>
+            @endif
 <fieldset class='w-full md:w-2/3 m-auto my-10 shadow-md rounded'>
         <legend class='text-blue-600 text-xl font-semibold p-2'>إضافة  علبة</legend>
         <form  class='flex flex-col p-5 gap-5' wire:submit='store'>
@@ -25,6 +32,7 @@
                 <x-form-error name='shelf_id' />
             </div>
 
-            <x-form-button>إضافة صندوق</x-form-button>
+            <x-form-button>إضافة علبة</x-form-button>
         </form>
     </fieldset>
+</section>

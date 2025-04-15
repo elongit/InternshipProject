@@ -25,11 +25,12 @@ class UserRequest extends Controller
 
     public function store(Request $request){
         $request->validate([
+            'full_name' => 'required|string|max:25',
             'request_reference' => 'required|string|max:255',
             'operation_topic'   => 'required|string|max:255',
             'division_id'       => 'required|exists:divisions,id',
             'operation_type'    => 'required|in:download,print',
-            'return_date'       => 'nullable|date',
+            'return_date'       => 'required|date',
         ]);
 
         $document_reference = Document::where('full_number', $request->request_reference)->first();
@@ -41,6 +42,7 @@ class UserRequest extends Controller
 
        $requestDocument =  UserDocumentAction::create([
             'user_id'         => Auth::id(),
+            'employee_full_name' => $request->full_name,
             'document_id'     => $document_reference->id,
             'division_id' => $request->division_id,
             'operation_topic' => $request->operation_topic,
@@ -62,12 +64,13 @@ class UserRequest extends Controller
         if ($request->operation_type == 'print') {
             $data = [
                 [
-                    'full_name' => Auth::user()->first_name . ' '. Auth::user()->last_name ,
+                    'full_name' => $request->full_name ,
                     'division' => Division::where('id', $request->division_id)->value('division_name'),
                     'topic' => $request->operation_topic,
                     'reference' =>  $request->request_reference,
                     'delivery_time' => $requestDocument->created_at,
                     'return_time' => $request->return_date,
+                    'delivered_employee' => Auth::user()->first_name . ' ' . Auth::user()->last_name
                 ]
             ];
 
@@ -92,13 +95,15 @@ class UserRequest extends Controller
     
             // Set the Content-Type header to application/pdf
             header('Content-Type: application/pdf');
-            header('Content-Disposition: inline; filename="document.pdf"'); // 'inline' opens it in the browser
+            header('Content-Disposition: attachment; filename="document.pdf"'); 
+            //header('Content-Disposition: inline; filename="document.pdf"'); // 'inline' opens it in the browser
     
             // Write the HTML content to the PDF
             $mpdf->WriteHTML($html);
     
             // Output the PDF
-            $mpdf->Output('document.pdf', 'I');
+            $mpdf->Output('document.pdf', 'D');
+            
         }
 
         return redirect()->back()->with('success', 'تم تسجيل الإجراء بنجاح.');

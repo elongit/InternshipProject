@@ -1,34 +1,28 @@
-@startuml File_Management
+@startuml Document_Management_System_UseCase
 
-rectangle "File Management System" {
-    ' Creating actors
-    actor LoggedOutEmployee
-    actor LoggedInEmployee
-    actor Admin
+actor المستخدم
+actor المدير
+actor النظام
 
-    ' Adding extensions
-    LoggedOutEmployee <|-- LoggedInEmployee
-    LoggedInEmployee <|-- Admin 
+المستخدم --> (تنزيل المستند)
+المستخدم --> (طباعة المستند)
+المستخدم --> (تسجيل الدخول)
+المستخدم --> (التسجيل)
 
-    ' Use cases for LoggedOutEmployee
-    LoggedOutEmployee --right-> (Login)
-    (Login) <.(Register) : includes
+المدير --> (تعيين الأدوار للمستخدمين)
+المدير --> (إدارة المستندات)
+المدير --> (إدارة الأقسام)
+المدير --> (إدارة الخزائن)
+المدير --> (إدارة الرفوف)
+المدير --> (إدارة الصناديق)
+المدير --> (تسجيل الدخول)
+المدير --> (التسجيل)
 
-    ' Use cases for LoggedInEmployee
-    LoggedInEmployee --right-> (Log Out)
-    LoggedInEmployee --right-> (Extract File)
+النظام --> (تتبع إجراءات المستند)
 
-    ' Use cases for Admin
-    Admin --down-> (Add Division)
-    Admin --right-> (Add Treasury)
-    (Add Treasury) <.(Add shelf) : includes
-    (Add shelf) <.(Add box) : includes
+المدير --> (عرض المستند)
 
-
-    ' Admin --right-> (Add Shelf)
-    ' Admin --right-> (Add Box)
-    ' Admin --right-> (Add File)
-    Admin --down-> (Track User Operations)
-}
+(تنزيل المستند) .down.> (تتبع إجراءات المستند) : يسجل الإجراء
+(طباعة المستند) .down.> (تتبع إجراءات المستند) : يسجل الإجراء
 
 @enduml

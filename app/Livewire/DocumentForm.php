@@ -85,6 +85,6 @@ class DocumentForm extends Component
             $this->handleUploadedFile($this, 'uploaded_document', new File(), $document->id);
         });
     
-        return redirect('/documents')->with('message', 'تمت إضافة الملف بنجاح');
+        return redirect('/documents')->with('success', 'تمت إضافة الملف بنجاح');
     }
 }
